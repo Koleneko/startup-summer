@@ -11,16 +11,15 @@ class MainPage extends React.Component {
     render() {
       return(
         <div className="Main_page">
-          {/* <div className="Wrapper"> */}
-            {
-              this.props.emptyState ? <div>Empty state</div> :
-              <div style = {{className : "Wrapper"}}>
+          {
+          this.props.emptyState ?
+          <div className="Wrapper">
                 <UserData />
                 <Repositories />
-              </div>
+            </div> :
+            <span>Empty state</span>
             }
-          </div>
-        
+        </div>
       )
     }
   }

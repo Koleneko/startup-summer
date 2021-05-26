@@ -19,7 +19,7 @@ class Container extends React.Component {
       clientInput : null,
       isFetching : false,
       isSearching : false,
-      emptyState : false,
+      emptyState : true,
       userInfo : null,
       userRepos : null,
       userFound : false,
