@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Logo from '../img/Logo.svg';
-import Input from './HeaderComponents/Input';
-
+import Search_Button from '../img/Search_Button.svg';
 
 class Header extends Component {
 
@@ -10,7 +9,12 @@ class Header extends Component {
     <div>
         <div className="Header">
           <img className="Logo" src={Logo} alt="img" />
-              <Input />
+          <div className="Search">
+          <button className="Search_Button">
+            <img src={Search_Button} alt="img" />
+          </button>
+          <input className="Input" type="text" placeholder="Enter GitHub username" />
+        </div>
           </div>
       </div>
     

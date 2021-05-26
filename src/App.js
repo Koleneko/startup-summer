@@ -1,14 +1,12 @@
 import './style/style.css';
 import './style/fonts/font-inter/stylesheet.css';
 
-import Header from './components/Header';
-import MainPage from './components/MainPage';
+import Container from './components/Container';
 
 function App() {
   return (
     <div>
-      <Header />
-      <MainPage />
+      <Container />
     </div>
   );
 }

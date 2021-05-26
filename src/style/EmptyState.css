@@ -1,0 +1,9 @@
+.EmptyState {
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100% - 72px);
+  flex-direction: column;
+  background-color: #f9f9f9;
+}
