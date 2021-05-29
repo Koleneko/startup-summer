@@ -3,25 +3,19 @@ import React from 'react';
 import UserData from './UserData';
 import Repositories from './Repositories';
 
-class MainPage extends React.Component {
-  // constructor(props) {
-  //   super(props)
-  // }
-   
-    render() {
-      return(
-        <div className="Main_page">
-          {
-          this.props.emptyState ?
-          <div className="Wrapper">
-                <UserData />
-                <Repositories />
-            </div> :
-            <span>Empty state</span>
-            }
+function MainPage({ state }) {
+  return (
+    <div className="Main_page">
+      {state.emptyState === true ? (
+        <span>Empty state</span>
+      ) : (
+        <div className="Wrapper">
+          <UserData state={state} />
+          <Repositories state={state} />
         </div>
-      )
-    }
-  }
+      )}
+    </div>
+  );
+}
 
-export default MainPage
+export default MainPage;
