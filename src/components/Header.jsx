@@ -2,7 +2,7 @@ import React from 'react';
 import Logo from '../img/Logo.svg';
 import Search_Button from '../img/Search_Button.svg';
 
-function Header({ startSearch, state, onChangeHandler, enterPressHandler }) {
+function Header({ startSearch, state, onChangeHandler, enterPressHandler, input }) {
   return (
     <div className="Header">
       <img className="Logo" src={Logo} alt="img" />
@@ -15,7 +15,7 @@ function Header({ startSearch, state, onChangeHandler, enterPressHandler }) {
           type="text"
           placeholder="Enter GitHub username"
           onChange={onChangeHandler}
-          value={state.clientInput}
+          value={input}
           onKeyPress={enterPressHandler}
         />
       </div>

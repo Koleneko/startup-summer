@@ -1,50 +1,57 @@
+/* eslint-disable no-unused-vars */
 import React, { Fragment } from 'react';
 import Header from './Header';
 import MainPage from './MainPage';
 import UserData from './UserData';
 
 export default function Container() {
-  const [state, setState] = React.useState({
-    clientInput: '',
-    isFetching: false,
-    isSearching: false,
-    emptyState: false,
-    userInfo: null,
-    userRepos: null,
-    userFound: false,
-    pageNum: 1,
-  });
+  const [input, setInput] = React.useState('');
+  const [userInfo, setInfo] = React.useState();
+  const [userRepos, setRepos] = React.useState([]);
+  const [pageCount, setPage] = React.useState(1);
 
-  const getUser = () => {
-    fetch(`api.github.com/users/${state.clientInput}`).then((res) => res.json());
+  const [pageState, setPageState] = React.useState('emptystate');
+
+  const getUser = async () => {
+    let response = await fetch(`https://api.github.com/users/${input}`);
+    return response.json();
   };
 
-  const getRepos = () => {
-    fetch(
-      `https://api.github.com/users/${state.clientInput}/repos?per_page=4&page=${state.pageNum}&sort=updated`,
-    ).then((res) => res.json());
+  const getRepos = async () => {
+    let response = await fetch(
+      `https://api.github.com/users/${input}/repos?per_page=4&page=${pageCount}&sort=updated`,
+    );
+    return response.json();
   };
 
-  function startSearch() {
-    alert('hi');
-  }
+  const startSearch = async () => {
+    let data = await getUser();
+    let repos = await getRepos();
+    if (data.message) {
+      setPageState('usernotfound');
+    } else {
+      setInfo(data);
+      repos.message ? setRepos([]) : setRepos(repos);
+      setPageState('');
+    }
+  };
 
-  function enterPressHandler(event) {
+  const enterPressHandler = (event) => {
     event.key === 'Enter' && startSearch();
-  }
+  };
 
   function onChangeHandler(event) {
-    setState({ clientInput: event.target.value });
+    setInput(event.target.value);
   }
   return (
     <Fragment>
       <Header
-        state={state}
+        input={input}
         startSearch={startSearch}
         onChangeHandler={onChangeHandler}
         enterPressHandler={enterPressHandler}
       />
-      <MainPage state={state} />
+      <MainPage pageState={pageState} userInfo={userInfo} userRepos={userRepos} />
     </Fragment>
   );
 }

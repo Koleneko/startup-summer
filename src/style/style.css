@@ -91,6 +91,8 @@ body {
   height: calc(100% - 72px);
   flex-direction: column;
   background-color: #f9f9f9;
+  text-align: center;
+  flex: auto;
 }
 .Main_page {
   font-size: 22px;
@@ -98,6 +100,7 @@ body {
   background-color: #f9f9f9;
   flex-direction: row;
   height: 90vh;
+  max-height: calc(100vh - 75px);
 }
 .content {
   display: flex;
