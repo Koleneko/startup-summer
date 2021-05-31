@@ -1,8 +1,7 @@
-/* eslint-disable no-unused-vars */
 import React, { Fragment } from 'react';
 import Header from './Header';
 import MainPage from './MainPage';
-import UserData from './UserData';
+import ReactPaginate from 'react-paginate';
 
 export default function Container() {
   const [input, setInput] = React.useState('');
@@ -24,20 +23,27 @@ export default function Container() {
     return response.json();
   };
 
+  // const updateRepos = async (offset) => {
+
+  // }
+
   const startSearch = async () => {
-    let data = await getUser();
-    let repos = await getRepos();
-    if (data.message) {
-      setPageState('usernotfound');
-    } else {
-      setInfo(data);
-      repos.message ? setRepos([]) : setRepos(repos);
-      setPageState('');
+    if (input) {
+      setPage(1);
+      let data = await getUser();
+      let repos = await getRepos();
+      if (data.message) {
+        setPageState('usernotfound');
+      } else {
+        setInfo(data);
+        repos.message ? setRepos([]) : setRepos(repos);
+        setPageState('');
+      }
     }
   };
 
   const enterPressHandler = (event) => {
-    event.key === 'Enter' && input && startSearch();
+    event.key === 'Enter' && startSearch();
   };
 
   function onChangeHandler(event) {

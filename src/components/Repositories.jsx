@@ -4,13 +4,12 @@ import React from 'react';
 function Repositories({ repoCount, userRepos }) {
   const RepoList = () =>
     userRepos.map((userRepo) => (
-      <div key={userRepo.id}>
-        <RepoBlock
-          repoUrl={userRepo.html_url}
-          repoName={userRepo.name}
-          repoDesc={userRepo.description}
-        />
-      </div>
+      <RepoBlock
+        key={userRepo.id}
+        repoUrl={userRepo.html_url}
+        repoName={userRepo.name}
+        repoDesc={userRepo.description}
+      />
     ));
 
   function RepoBlock({ repoUrl, repoName, repoDesc }) {
