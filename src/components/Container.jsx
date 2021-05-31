@@ -37,7 +37,7 @@ export default function Container() {
   };
 
   const enterPressHandler = (event) => {
-    event.key === 'Enter' && startSearch();
+    event.key === 'Enter' && input && startSearch();
   };
 
   function onChangeHandler(event) {
