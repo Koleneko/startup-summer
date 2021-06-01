@@ -24,9 +24,17 @@ body {
   min-height: 75px;
 }
 
+a :hover {
+  text-decoration: underline;
+}
+
 .Link {
   text-decoration: none;
   color: #0064eb;
+}
+
+.Link:hover {
+  text-decoration: underline !important;
 }
 
 .Wrapper {
@@ -206,6 +214,10 @@ body {
   color: #0064eb;
 }
 
+.Repo_link:hover {
+  text-decoration: underline !important;
+}
+
 .Repo_description {
   color: #000;
   font-family: Inter;
@@ -214,6 +226,21 @@ body {
   font-size: 16px;
   line-height: 19px;
   padding-inline-end: 5px;
+}
+
+.Pagination_wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: row;
+  width: 100%;
+  font-size: 20px;
+  color: #808080;
+}
+
+.Pagination_wrapper > p {
+  font-size: 20px;
+  color: #808080;
 }
 
 .Pagination {
@@ -242,6 +269,10 @@ body {
   }
 
   .Pagination {
+    justify-content: center;
+  }
+
+  .Pagination_wrapper {
     justify-content: center;
   }
 }

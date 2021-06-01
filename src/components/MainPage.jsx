@@ -4,8 +4,9 @@ import UserData from './UserData';
 import Repositories from './Repositories';
 import UserNotFound from './UserNotFound';
 import NoRepos from './NoRepos';
+import Loader from 'react-loader-spinner';
 
-function MainPage({ pageState, userInfo, userRepos }) {
+function MainPage({ pageState, userInfo, userRepos, changePage, loading, currentPage, fetching }) {
   const renderSwitch = () => {
     switch (pageState) {
       case 'emptystate':
@@ -19,21 +20,41 @@ function MainPage({ pageState, userInfo, userRepos }) {
 
   return (
     <div className="Main_page">
-      {pageState ? (
-        <div className="Wrapper" style={{ justifyContent: 'center' }}>
-          {renderSwitch()}
+      {loading ? (
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '100%',
+          }}>
+          <Loader type="TailSpin" color="#00BFFF" height={80} width={80} />
         </div>
       ) : (
-        <div className="Wrapper" style={{ justifyContent: '' }}>
-          <Fragment>
-            <UserData userInfo={userInfo} />
-            {userRepos.length ? (
-              <Repositories repoCount={userInfo.public_repos} userRepos={userRepos} />
-            ) : (
-              <NoRepos />
-            )}
-          </Fragment>
-        </div>
+        <Fragment>
+          {pageState ? (
+            <div className="Wrapper" style={{ justifyContent: 'center' }}>
+              {renderSwitch()}
+            </div>
+          ) : (
+            <div className="Wrapper" style={{ justifyContent: '' }}>
+              <Fragment>
+                <UserData userInfo={userInfo} />
+                {userRepos.length ? (
+                  <Repositories
+                    repoCount={userInfo.public_repos}
+                    userRepos={userRepos}
+                    changePage={changePage}
+                    currentPage={currentPage}
+                    fetching={fetching}
+                  />
+                ) : (
+                  <NoRepos />
+                )}
+              </Fragment>
+            </div>
+          )}
+        </Fragment>
       )}
     </div>
   );
